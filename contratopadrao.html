@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ManDaí – Contratação do seu site</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFF6EC;--card:#fff;--ink:#14181f;--mut:#5d6573;--line:#e3e6eb;--pri:#0F3D3E;--pri2:#FFF1E4;--lar:#F26B1D;--ok:#12a150;--warn:#b54708}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+.wrap{max-width:780px;margin:0 auto;padding:24px 16px 80px}
+header.top{text-align:center;padding:24px 0 8px}
+header.top .logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
+header.top .logo svg{width:52px;height:52px}
+header.top .logo b{font-family:'Baloo 2',sans-serif;font-size:2.4rem;font-weight:800;letter-spacing:-1px;color:var(--pri);line-height:1}
+header.top .logo b span{color:var(--lar)}
+header.top .slogan{font-size:.85rem;font-weight:600;color:var(--mut);margin-top:2px}
+header.top h1{font-size:clamp(1.6rem,5vw,2.2rem);margin:6px 0 4px;letter-spacing:-.02em}
+header.top p{color:var(--mut)}
+.passos{display:flex;gap:6px;margin:22px 0 18px}
+.passos div{flex:1;height:6px;border-radius:99px;background:var(--line)}
+.passos div.on{background:var(--lar)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:16px}
+.card h2{font-size:1.15rem;margin-bottom:4px;display:flex;align-items:center;gap:10px}
+.card h2 .n{width:28px;height:28px;border-radius:50%;background:var(--pri);color:#fff;font-size:.85rem;display:grid;place-items:center;flex:none}
+.card .sub{color:var(--mut);font-size:.92rem;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.full{grid-column:1/-1}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+label{display:block;font-weight:600;font-size:.86rem;margin-bottom:5px}
+label .opc{color:var(--mut);font-weight:500}
+input[type=text],input[type=email],input[type=tel]{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;font:inherit;background:#fff}
+input:focus{outline:none;border-color:var(--pri);box-shadow:0 0 0 3px var(--pri2)}
+input.inval{border-color:#d92d20}
+.planos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.planos{grid-template-columns:1fr}}
+.plano{position:relative;border:2px solid var(--line);border-radius:16px;padding:18px;cursor:pointer;background:#fff;text-align:left;font:inherit;color:inherit;transition:.15s}
+.plano:hover{border-color:#f5b48c}
+.plano.sel{border-color:var(--lar);background:var(--pri2);box-shadow:0 0 0 3px rgba(242,107,29,.25)}
+.plano .selo{position:absolute;top:-11px;right:14px;background:var(--ok);color:#fff;font-size:.72rem;font-weight:800;padding:3px 10px;border-radius:99px;text-transform:uppercase;letter-spacing:.04em}
+.plano h3{font-size:1.05rem}
+.plano .preco{font-size:1.7rem;font-weight:800;margin:6px 0 2px;letter-spacing:-.02em}
+.plano .preco small{font-size:.9rem;font-weight:600;color:var(--mut)}
+.plano .det{font-size:.85rem;color:var(--mut)}
+.plano ul{list-style:none;margin-top:12px;font-size:.88rem}
+.plano li{padding:3px 0 3px 22px;position:relative}
+.plano li::before{content:"✓";position:absolute;left:0;color:var(--ok);font-weight:800}
+.plano li.nao::before{content:"–";color:var(--mut)}
+.radio{position:absolute;top:18px;right:18px;width:22px;height:22px;border-radius:50%;border:2px solid #b9c0cc;background:#fff}
+.plano.sel .radio{border-color:var(--pri);background:radial-gradient(var(--pri) 45%,#fff 50%)}
+.cupom{display:flex;gap:8px}
+.cupom input{text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;border-radius:12px;padding:13px 20px;font:inherit;font-weight:700;cursor:pointer;text-decoration:none;transition:.15s}
+.btn-pri{background:var(--pri);color:#fff}
+.btn-pri:hover{filter:brightness(1.08)}
+.btn-pri:disabled{background:#9db3f5;cursor:not-allowed}
+.btn-sec{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+.btn-ok{background:var(--ok);color:#fff}
+.btn-zap{background:#25d366;color:#fff}
+.btn-lg{width:100%;padding:16px;font-size:1.05rem}
+.msg{font-size:.86rem;margin-top:8px;font-weight:600}
+.msg.ok{color:var(--ok)}.msg.err{color:#d92d20}
+.resumo{background:#f8f9fb;border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:16px}
+.resumo .l{display:flex;justify-content:space-between;padding:4px 0;font-size:.93rem}
+.resumo .l.desc{color:var(--ok)}
+.resumo .l.tot{border-top:1px solid var(--line);margin-top:6px;padding-top:10px;font-weight:800;font-size:1.05rem}
+.contrato{font-family:'Source Serif 4',Georgia,serif;font-size:.97rem;max-height:440px;overflow:auto;border:1px solid var(--line);border-radius:14px;padding:22px;background:#fffefb}
+.contrato h3{font-family:Inter,sans-serif;text-align:center;font-size:1rem;margin-bottom:14px;letter-spacing:.02em}
+.contrato h4{font-family:Inter,sans-serif;font-size:.88rem;margin:16px 0 6px;text-transform:uppercase;letter-spacing:.04em}
+.contrato p{margin-bottom:8px;text-align:justify}
+@media(max-width:600px){.contrato p{text-align:left}.contrato{padding:16px}}
+.contrato .v{background:#fff4c2;padding:0 3px;border-radius:3px;font-weight:600}
+.contrato .v.vazio{background:#ffe1dc;color:#b42318}
+.aceite{margin-top:16px;display:flex;gap:10px;align-items:flex-start;font-size:.93rem}
+.aceite input{width:20px;height:20px;margin-top:2px;accent-color:var(--pri);flex:none}
+.erros{background:#fef3f2;border:1px solid #fecdca;color:#b42318;border-radius:12px;padding:12px 14px;font-size:.88rem;margin-top:14px;display:none}
+#checkout{display:none}
+.check-ok{text-align:center;padding:10px 0 6px}
+.check-ok .ic{width:64px;height:64px;border-radius:50%;background:#e7f8ee;color:var(--ok);display:grid;place-items:center;font-size:2rem;margin:0 auto 10px}
+.prot{display:inline-block;background:#f1f3f6;border-radius:8px;padding:4px 10px;font-family:monospace;font-weight:700;margin-top:6px}
+.etapa-pag{border:1.5px solid var(--line);border-radius:14px;padding:16px;margin-top:12px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.etapa-pag b{display:block}
+.etapa-pag span{color:var(--mut);font-size:.88rem}
+.etapa-pag.feito{border-color:var(--ok);background:#f3fbf6}
+.acoes{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.acoes .btn{flex:1;min-width:200px}
+.seg{display:flex;align-items:center;gap:8px;justify-content:center;color:var(--mut);font-size:.82rem;margin-top:14px}
+footer{text-align:center;color:var(--mut);font-size:.8rem;margin-top:26px}
+
+@media print{
+  body{background:#fff}
+  .noprint,.passos,header.top p{display:none!important}
+  .card{border:none;padding:0}
+  .contrato{max-height:none;overflow:visible;border:none;padding:0;font-size:11pt}
+  .contrato .v{background:none;padding:0}
+  #printAssin{display:block!important}
+}
+#printAssin{display:none;margin-top:30px;font-family:'Source Serif 4',serif;font-size:11pt}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="logo" role="img" aria-label="ManDaí"><svg viewBox="0 0 120 120" aria-hidden="true"><path d="M38 10 H82 A28 28 0 0 1 110 38 V64 A28 28 0 0 1 82 92 H50 L26 112 L30 90 A28 28 0 0 1 10 64 V38 A28 28 0 0 1 38 10 Z" fill="#F26B1D"/><path d="M33 50 L87 29 L67 81 L57 61 Z" fill="#fff"/><path d="M57 61 L87 29" stroke="#F26B1D" stroke-width="4" stroke-linecap="round"/><circle cx="96" cy="22" r="9" fill="#FFC23D"/></svg><b>Man<span>Daí</span></b></div>
+  <div class="slogan">Pediu, mandou, chegou.</div>
+  <h1>Contratação do seu site</h1>
+  <p>Preencha os dados, escolha o plano, leia o contrato e finalize o pagamento. Leva uns 5 minutos.</p>
+</header>
+<div class="passos noprint"><div class="on" id="p1"></div><div id="p2"></div><div id="p3"></div></div>
+
+<div id="formulario">
+<!-- 1. DADOS -->
+<section class="card noprint">
+  <h2><span class="n">1</span>Dados da loja</h2>
+  <p class="sub">Essas informações entram no contrato e no site.</p>
+  <div class="grid">
+    <div class="full"><label for="f_loja">Nome da loja (nome fantasia)</label><input type="text" id="f_loja" data-req></div>
+    <div><label for="f_razao">Razão social <span class="opc">(se tiver)</span></label><input type="text" id="f_razao"></div>
+    <div><label for="f_doc">CNPJ ou CPF</label><input type="text" id="f_doc" inputmode="numeric" data-req data-tipo="doc" placeholder="00.000.000/0000-00"></div>
+    <div><label for="f_resp">Nome do responsável</label><input type="text" id="f_resp" data-req autocomplete="name"></div>
+    <div><label for="f_cpfresp">CPF do responsável</label><input type="text" id="f_cpfresp" inputmode="numeric" data-req data-tipo="cpf" placeholder="000.000.000-00"></div>
+    <div class="full"><label for="f_end">Endereço da loja</label><input type="text" id="f_end" data-req placeholder="Rua, número, bairro"></div>
+    <div><label for="f_cidade">Cidade / UF</label><input type="text" id="f_cidade" data-req placeholder="Recife / PE"></div>
+    <div><label for="f_cep">CEP</label><input type="text" id="f_cep" inputmode="numeric" placeholder="00000-000"></div>
+    <div><label for="f_zap">WhatsApp da loja</label><input type="tel" id="f_zap" data-req data-tipo="tel" placeholder="(81) 9 0000-0000"></div>
+    <div><label for="f_email">E-mail</label><input type="email" id="f_email" data-req data-tipo="email" autocomplete="email"></div>
+    <div><label for="f_insta">Instagram <span class="opc">(opcional)</span></label><input type="text" id="f_insta" placeholder="@sualoja"></div>
+    <div><label for="f_dominio">Domínio desejado <span class="opc">(opcional)</span></label><input type="text" id="f_dominio" placeholder="sualoja.com.br"></div>
+  </div>
+</section>
+
+<!-- 2. PLANO -->
+<section class="card noprint">
+  <h2><span class="n">2</span>Escolha o plano</h2>
+  <p class="sub">Toque em um dos planos para selecionar.</p>
+  <div class="planos">
+    <button type="button" class="plano" data-plano="mensal">
+      <span class="selo">Mais escolhido</span><span class="radio"></span>
+      <h3>Plano Mensal</h3>
+      <div class="preco" id="pm_preco"></div>
+      <div class="det" id="pm_det"></div>
+      <ul>
+        <li>Site com cardápio e pedido online</li>
+        <li>Domínio próprio (.com.br) incluso</li>
+        <li>Hospedagem inclusa</li>
+        <li id="pm_alt"></li>
+        <li>Suporte pelo WhatsApp</li>
+      </ul>
+    </button>
+    <button type="button" class="plano" data-plano="unico">
+      <span class="radio"></span>
+      <h3>Pagamento Único</h3>
+      <div class="preco" id="pu_preco"></div>
+      <div class="det">pagamento à vista, sem mensalidade</div>
+      <ul>
+        <li>Site com cardápio e pedido online</li>
+        <li>Publicação inicial inclusa</li>
+        <li class="nao">Domínio por conta da loja</li>
+        <li class="nao" id="pu_alt"></li>
+      </ul>
+    </button>
+  </div>
+
+  <div style="margin-top:18px">
+    <label for="f_cupom">Cupom de desconto <span class="opc">(opcional)</span></label>
+    <div class="cupom"><input type="text" id="f_cupom" placeholder="Digite seu cupom" autocomplete="off"><button type="button" class="btn btn-sec" id="btnCupom">Aplicar</button></div>
+    <div class="msg" id="msgCupom"></div>
+  </div>
+
+  <div class="resumo" id="resumo"><div class="l" style="color:var(--mut)">Selecione um plano para ver o resumo.</div></div>
+</section>
+
+<!-- 3. CONTRATO -->
+<section class="card">
+  <h2 class="noprint"><span class="n">3</span>Leia e aceite o contrato</h2>
+  <p class="sub noprint">O contrato é preenchido automaticamente com os seus dados. Campos em vermelho ainda faltam.</p>
+  <div class="contrato" id="contrato"></div>
+  <div id="printAssin"></div>
+  <div class="noprint">
+    <label class="aceite"><input type="checkbox" id="f_aceite"><span>Li e concordo com todas as cláusulas deste contrato e declaro que tenho poderes para contratar em nome da loja.</span></label>
+    <div style="margin-top:12px"><label for="f_assina">Assinatura eletrônica: digite seu nome completo</label><input type="text" id="f_assina" placeholder="Igual ao nome do responsável"></div>
+    <div class="erros" id="erros"></div>
+    <button class="btn btn-pri btn-lg" style="margin-top:18px" id="btnAceitar">Assinar e ir para o pagamento</button>
+    <div class="seg">🔒 Pagamento processado pelo Asaas, instituição autorizada pelo Banco Central.</div>
+  </div>
+</section>
+</div>
+
+<!-- CHECKOUT -->
+<section class="card noprint" id="checkout">
+  <div class="check-ok">
+    <div class="ic">✓</div>
+    <h2 style="justify-content:center">Contrato assinado!</h2>
+    <p class="sub" style="margin:4px 0 0">Protocolo <span class="prot" id="protocolo"></span></p>
+  </div>
+  <div class="resumo" id="resumo2"></div>
+  <div id="etapasPag"></div>
+  <div class="acoes">
+    <button class="btn btn-zap" id="btnZap">Enviar cópia no WhatsApp</button>
+    <button class="btn btn-sec" id="btnPdf">Baixar contrato (PDF)</button>
+  </div>
+  <p class="sub" style="margin-top:14px;font-size:.85rem">Depois de pagar, envie a cópia do contrato pelo WhatsApp. Assim começamos a montar o seu site.</p>
+</section>
+
+<footer id="rodape"></footer>
+</div>
+
+<script>
+/* =================== CONFIGURAÇÃO (edite aqui) =================== */
+var CFG = {
+  marca: 'ManDaí · Sites com pedido online',
+  contratado: {
+    nome: 'MANDAÍ',
+    doc: 'CPF nº 000.000.000-00',            // trocar pelo CPF (ou CNPJ quando abrir o MEI)
+    endereco: 'Recife / PE',                  // endereço ou cidade do contratado
+    whatsapp: '5581900000000',                // seu WhatsApp: 55 + DDD + número
+    email: 'seu-email@exemplo.com'
+  },
+  foro: 'Recife / PE',
+  precos: {
+    unico: 600,           // plano único
+    alteracao: 50,        // cada alteração no plano único
+    entrada: 200,         // entrada do plano mensal
+    mensal: 100,          // mensalidade
+    meses: 12,            // fidelidade mínima
+    multa: 30,            // % das mensalidades restantes
+    alteracoesMes: 4,     // alterações inclusas por mês no mensal
+    prazoEntrega: 7,      // dias úteis
+    diasSuspensao: 10     // dias de atraso até suspender
+  },
+  /* Cupons: pct = % de desconto; aplica em 'unico', 'entrada' e/ou 'mensal' */
+  cupons: {
+    SITE10: { pct: 10, aplica: ['unico','entrada'], texto: '10% de desconto' }
+  },
+  /* Links de pagamento do Asaas (cole aqui depois de criar).
+     Chave = plano + cupom. Ex.: 'unico', 'unico_SITE10', 'entrada', 'entrada_SITE10', 'assinatura' */
+  links: {
+    unico: '',
+    unico_SITE10: '',
+    entrada: '',
+    entrada_SITE10: '',
+    assinatura: ''
+  }
+};
+/* ================================================================= */
+
+var P=CFG.precos, estado={plano:null,cupom:null,protocolo:null,data:null};
+function $(i){return document.getElementById(i)}
+function brl(v){return 'R$ '+v.toFixed(2).replace('.',',').replace(/\B(?=(\d{3})+(?!\d))/g,'.')}
+function val(i){return ($(i).value||'').trim()}
+function esc(s){return s.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+
+$('rodape').textContent=CFG.marca+' · '+CFG.contratado.email;
+$('pm_preco').innerHTML=brl(P.mensal)+'<small>/mês</small>';
+$('pm_det').textContent='+ '+brl(P.entrada)+' de entrada · fidelidade de '+P.meses+' meses';
+$('pm_alt').textContent='Até '+P.alteracoesMes+' alterações por mês inclusas';
+$('pu_preco').textContent=brl(P.unico);
+$('pu_alt').textContent='Alterações: '+brl(P.alteracao)+' cada';
+
+/* ---------- máscaras ---------- */
+function soDig(s){return s.replace(/\D/g,'')}
+function mascDoc(v){v=soDig(v).slice(0,14);
+  if(v.length<=11)return v.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2');
+  return v.replace(/^(\d{2})(\d)/,'$1.$2').replace(/^(\d{2})\.(\d{3})(\d)/,'$1.$2.$3').replace(/\.(\d{3})(\d)/,'.$1/$2').replace(/(\d{4})(\d)/,'$1-$2')}
+function mascTel(v){v=soDig(v).slice(0,11);return v.length>10?v.replace(/(\d{2})(\d)(\d{4})(\d{4})/,'($1) $2 $3-$4'):v.replace(/(\d{2})(\d{4})(\d{0,4})/,'($1) $2-$3')}
+$('f_doc').addEventListener('input',function(){this.value=mascDoc(this.value)});
+$('f_cpfresp').addEventListener('input',function(){this.value=mascDoc(this.value).slice(0,14)});
+$('f_zap').addEventListener('input',function(){this.value=mascTel(this.value)});
+$('f_cep').addEventListener('input',function(){this.value=soDig(this.value).slice(0,8).replace(/(\d{5})(\d)/,'$1-$2')});
+
+function cpfOk(c){c=soDig(c);if(c.length!==11||/^(\d)\1+$/.test(c))return false;
+  for(var t=9;t<11;t++){var s=0;for(var i=0;i<t;i++)s+=c[i]*(t+1-i);if(((s*10)%11)%10!=c[t])return false}return true}
+function cnpjOk(c){c=soDig(c);if(c.length!==14||/^(\d)\1+$/.test(c))return false;
+  var calc=function(n){var s=0,p=n-7;for(var i=0;i<n;i++){s+=c[i]*p--;if(p<2)p=9}var r=s%11<2?0:11-s%11;return r};
+  return calc(12)==c[12]&&calc(13)==c[13]}
+
+/* ---------- planos e cupom ---------- */
+document.querySelectorAll('.plano').forEach(function(b){b.addEventListener('click',function(){
+  document.querySelectorAll('.plano').forEach(function(x){x.classList.remove('sel')});
+  b.classList.add('sel');estado.plano=b.dataset.plano;atualizar();
+  $('p2').classList.add('on');
+})});
+
+function aplicarCupom(){
+  var c=val('f_cupom').toUpperCase(),m=$('msgCupom');
+  if(!c){estado.cupom=null;m.textContent='';m.className='msg';atualizar();return}
+  if(CFG.cupons[c]){estado.cupom=c;m.textContent='✓ Cupom '+c+' aplicado: '+CFG.cupons[c].texto;m.className='msg ok'}
+  else{estado.cupom=null;m.textContent='Cupom inválido ou expirado.';m.className='msg err'}
+  atualizar();
+}
+$('btnCupom').onclick=aplicarCupom;
+$('f_cupom').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();aplicarCupom()}});
+
+function preco(item){var v=P[item],c=estado.cupom&&CFG.cupons[estado.cupom];
+  if(c&&c.aplica.indexOf(item)>=0)v=Math.round(v*(100-c.pct))/100;return v}
+
+function linhasResumo(){
+  var h='',c=estado.cupom;
+  if(estado.plano==='unico'){
+    h+='<div class="l"><span>Pagamento único</span><span>'+brl(P.unico)+'</span></div>';
+    if(preco('unico')<P.unico)h+='<div class="l desc"><span>Cupom '+c+'</span><span>− '+brl(P.unico-preco('unico'))+'</span></div>';
+    h+='<div class="l tot"><span>Total a pagar hoje</span><span>'+brl(preco('unico'))+'</span></div>';
+  }else if(estado.plano==='mensal'){
+    h+='<div class="l"><span>Entrada (configuração)</span><span>'+brl(P.entrada)+'</span></div>';
+    if(preco('entrada')<P.entrada)h+='<div class="l desc"><span>Cupom '+c+'</span><span>− '+brl(P.entrada-preco('entrada'))+'</span></div>';
+    h+='<div class="l tot"><span>Total a pagar hoje</span><span>'+brl(preco('entrada'))+'</span></div>';
+    h+='<div class="l" style="color:var(--mut);font-size:.88rem"><span>Depois: mensalidade no cartão</span><span>'+brl(preco('mensal'))+'/mês × '+P.meses+'</span></div>';
+  }
+  return h;
+}
+
+/* ---------- contrato ---------- */
+function v(id,ph){var x=val(id);return x?'<span class="v">'+esc(x)+'</span>':'<span class="v vazio">['+ph+']</span>'}
+function contratoHTML(){
+  var K=CFG.contratado,pl=estado.plano,c=estado.cupom;
+  var razao=val('f_razao')?', razão social '+v('f_razao',''):'';
+  var h='<h3>CONTRATO DE PRESTAÇÃO DE SERVIÇOS DE CRIAÇÃO E MANUTENÇÃO DE SITE</h3>';
+  h+='<h4>Das partes</h4>';
+  h+='<p><b>CONTRATANTE:</b> '+v('f_loja','nome da loja')+razao+', inscrita no CPF/CNPJ sob nº '+v('f_doc','CNPJ ou CPF')+', com endereço em '+v('f_end','endereço')+', '+v('f_cidade','cidade/UF')+(val('f_cep')?', CEP '+v('f_cep',''):'')+', neste ato representada por '+v('f_resp','responsável')+', CPF nº '+v('f_cpfresp','CPF do responsável')+', e-mail '+v('f_email','e-mail')+', WhatsApp '+v('f_zap','WhatsApp')+'.</p>';
+  h+='<p><b>CONTRATADO:</b> '+esc(K.nome)+', '+esc(K.doc)+', com endereço em '+esc(K.endereco)+', e-mail '+esc(K.email)+'.</p>';
+  h+='<p>As partes acima identificadas celebram o presente contrato, que se regerá pelas cláusulas seguintes.</p>';
+
+  h+='<h4>Cláusula 1ª – Do objeto</h4>';
+  h+='<p>1.1. O CONTRATADO prestará à CONTRATANTE o serviço de criação de site institucional com cardápio digital, carrinho de pedidos com envio pelo WhatsApp da CONTRATANTE, geração de QR Code Pix com o valor do pedido, informações de contato, horário de funcionamento e localização.</p>';
+  h+='<p>1.2. Os pagamentos feitos pelos clientes da CONTRATANTE por meio do site são creditados diretamente na conta Pix da CONTRATANTE. O CONTRATADO não recebe, intermedia ou guarda valores dos pedidos.</p>';
+
+  h+='<h4>Cláusula 2ª – Do prazo de entrega</h4>';
+  h+='<p>2.1. O site será publicado em até '+P.prazoEntrega+' dias úteis, contados da confirmação do primeiro pagamento e do recebimento de todas as informações necessárias (cardápio, preços, fotos, chave Pix e logotipo).</p>';
+
+  h+='<h4>Cláusula 3ª – Do plano contratado e do preço</h4>';
+  if(pl==='mensal'){
+    h+='<p>3.1. A CONTRATANTE opta pelo <span class="v">PLANO MENSAL</span>, mediante o pagamento de entrada de <span class="v">'+brl(preco('entrada'))+'</span>'+(c&&preco('entrada')<P.entrada?' (valor com o cupom '+c+')':'')+', à vista, e de mensalidades de <span class="v">'+brl(preco('mensal'))+'</span>, cobradas de forma recorrente no cartão de crédito, por meio da plataforma Asaas.</p>';
+    h+='<p>3.2. A cobrança recorrente debita apenas o valor de cada mensalidade na fatura do cartão, sem comprometer o limite pelo valor total do contrato.</p>';
+    h+='<p>3.3. Estão incluídos no Plano Mensal: hospedagem do site; registro e renovação anual do domínio .com.br, que será registrado em nome da CONTRATANTE; até '+P.alteracoesMes+' alterações de conteúdo por mês (preços, inclusão e exclusão de produtos, fotos, horários e textos), não cumulativas; e suporte pelo WhatsApp em dias úteis, em horário comercial.</p>';
+    h+='<p>3.4. Alterações que excedam o limite mensal ou que impliquem novas funcionalidades serão orçadas à parte.</p>';
+  }else if(pl==='unico'){
+    h+='<p>3.1. A CONTRATANTE opta pelo <span class="v">PAGAMENTO ÚNICO</span>, no valor de <span class="v">'+brl(preco('unico'))+'</span>'+(c&&preco('unico')<P.unico?' (valor com o cupom '+c+')':'')+', pago à vista.</p>';
+    h+='<p>3.2. Estão incluídas a criação e a publicação inicial do site em hospedagem gratuita de terceiros. O registro e a renovação de domínio próprio são de responsabilidade e custo da CONTRATANTE.</p>';
+    h+='<p>3.3. Após a entrega, cada alteração solicitada (preços, produtos, fotos, horários ou textos) será cobrada no valor de <span class="v">'+brl(P.alteracao)+'</span> por solicitação, paga antes da execução.</p>';
+    h+='<p>3.4. Os arquivos do site serão entregues à CONTRATANTE após a quitação integral.</p>';
+  }else{
+    h+='<p>3.1. <span class="v vazio">[selecione um plano acima]</span></p>';
+  }
+
+  h+='<h4>Cláusula 4ª – Da vigência, do atraso e da rescisão</h4>';
+  if(pl==='mensal'){
+    h+='<p>4.1. O Plano Mensal tem prazo mínimo de '+P.meses+' meses, contados da publicação do site. Após esse período, será renovado automaticamente por prazo indeterminado, podendo ser cancelado por qualquer das partes com aviso prévio de 30 (trinta) dias.</p>';
+    h+='<p>4.2. Em caso de cancelamento pela CONTRATANTE antes do prazo mínimo, será devida multa de '+P.multa+'% sobre o valor das mensalidades restantes.</p>';
+    h+='<p>4.3. O atraso de pagamento superior a '+P.diasSuspensao+' dias autoriza o CONTRATADO a suspender a exibição do site até a regularização, sem prejuízo da cobrança dos valores devidos.</p>';
+    h+='<p>4.4. Durante a vigência, o site é disponibilizado à CONTRATANTE sob licença de uso. Cumprido o prazo mínimo e quitados todos os valores, em caso de encerramento, os arquivos do site e o domínio serão entregues à CONTRATANTE sem custo adicional.</p>';
+  }else{
+    h+='<p>4.1. O contrato se encerra com a entrega do site, permanecendo válidas as condições de alteração previstas na cláusula 3ª.</p>';
+  }
+
+  h+='<h4>Cláusula 5ª – Das obrigações da CONTRATANTE</h4>';
+  h+='<p>5.1. Fornecer informações corretas e atualizadas sobre produtos, preços, horários, chave Pix e dados de contato, sendo a única responsável por esse conteúdo, pelos produtos vendidos, pelas entregas e pelo atendimento aos seus clientes.</p>';
+  h+='<p>5.2. Garantir que possui direito de uso sobre fotos, logotipos e marcas enviadas para publicação.</p>';
+
+  h+='<h4>Cláusula 6ª – Das obrigações e limites do CONTRATADO</h4>';
+  h+='<p>6.1. Executar os serviços com zelo e manter o site funcionando conforme o plano contratado.</p>';
+  h+='<p>6.2. O CONTRATADO não se responsabiliza por indisponibilidades de serviços de terceiros, como WhatsApp, provedores de hospedagem, registro de domínio, instituições financeiras e o sistema Pix, nem por pedidos, pagamentos ou entregas realizados entre a CONTRATANTE e seus clientes.</p>';
+
+  h+='<h4>Cláusula 7ª – Da proteção de dados</h4>';
+  h+='<p>7.1. Os dados informados neste contrato serão usados exclusivamente para a execução dos serviços e a cobrança, nos termos da Lei nº 13.709/2018 (LGPD). O site não armazena dados dos clientes da CONTRATANTE, que são enviados diretamente ao seu WhatsApp.</p>';
+
+  h+='<h4>Cláusula 8ª – Da assinatura eletrônica</h4>';
+  h+='<p>8.1. As partes reconhecem como válida a contratação e a assinatura deste instrumento por meio eletrônico, mediante aceite e digitação do nome do representante da CONTRATANTE, nos termos do art. 10, § 2º, da Medida Provisória nº 2.200-2/2001, e do art. 107 do Código Civil.</p>';
+
+  h+='<h4>Cláusula 9ª – Do foro</h4>';
+  h+='<p>9.1. Fica eleito o foro da comarca de '+esc(CFG.foro)+' para dirimir quaisquer dúvidas oriundas deste contrato.</p>';
+  if(estado.protocolo){
+    h+='<p style="margin-top:18px"><b>Assinado eletronicamente</b> por <span class="v">'+esc(val('f_assina'))+'</span>, representante da CONTRATANTE, em '+estado.data+'. Protocolo: <b>'+estado.protocolo+'</b>.</p>';
+  }else{
+    h+='<p style="margin-top:18px;color:#888">Local e data serão registrados no momento da assinatura eletrônica.</p>';
+  }
+  return h;
+}
+
+function atualizar(){
+  $('resumo').innerHTML=estado.plano?linhasResumo():'<div class="l" style="color:var(--mut)">Selecione um plano para ver o resumo.</div>';
+  $('contrato').innerHTML=contratoHTML();
+}
+document.querySelectorAll('#formulario input[type=text],#formulario input[type=email],#formulario input[type=tel]').forEach(function(i){
+  i.addEventListener('input',function(){i.classList.remove('inval');atualizar()});
+});
+
+/* ---------- validação e aceite ---------- */
+function validar(){
+  var e=[];
+  document.querySelectorAll('[data-req]').forEach(function(i){
+    var x=i.value.trim(),ok=!!x,t=i.dataset.tipo;
+    if(ok&&t==='doc')ok=soDig(x).length===11?cpfOk(x):cnpjOk(x);
+    if(ok&&t==='cpf')ok=cpfOk(x);
+    if(ok&&t==='tel')ok=soDig(x).length>=10;
+    if(ok&&t==='email')ok=/^\S+@\S+\.\S+$/.test(x);
+    i.classList.toggle('inval',!ok);
+    if(!ok)e.push(document.querySelector('label[for='+i.id+']').childNodes[0].textContent.trim());
+  });
+  if(!estado.plano)e.push('Escolha um plano');
+  if(val('f_cupom')&&!estado.cupom)e.push('Cupom inválido: apague ou corrija');
+  if(!$('f_aceite').checked)e.push('Marque que leu e concorda com o contrato');
+  var a=val('f_assina').toLowerCase().replace(/\s+/g,' '),r=val('f_resp').toLowerCase().replace(/\s+/g,' ');
+  if(!a||a!==r)e.push('A assinatura deve ser igual ao nome do responsável');
+  var box=$('erros');
+  if(e.length){box.innerHTML='<b>Confira antes de continuar:</b><br>• '+e.join('<br>• ');box.style.display='block';box.scrollIntoView({behavior:'smooth',block:'center'})}
+  else box.style.display='none';
+  return !e.length;
+}
+
+function textoWhats(){
+  var t='*CONTRATO ASSINADO – '+estado.protocolo+'*\n\n';
+  t+='Loja: '+val('f_loja')+'\nCPF/CNPJ: '+val('f_doc')+'\nResponsável: '+val('f_resp')+' (CPF '+val('f_cpfresp')+')\n';
+  t+='Endereço: '+val('f_end')+' – '+val('f_cidade')+(val('f_cep')?' – CEP '+val('f_cep'):'')+'\n';
+  t+='WhatsApp: '+val('f_zap')+'\nE-mail: '+val('f_email')+'\n';
+  if(val('f_insta'))t+='Instagram: '+val('f_insta')+'\n';
+  if(val('f_dominio'))t+='Domínio desejado: '+val('f_dominio')+'\n';
+  t+='\nPlano: '+(estado.plano==='mensal'?'MENSAL – entrada '+brl(preco('entrada'))+' + '+brl(preco('mensal'))+'/mês ('+P.meses+' meses)':'ÚNICO – '+brl(preco('unico')));
+  if(estado.cupom)t+='\nCupom: '+estado.cupom;
+  t+='\n\nAssinado eletronicamente por '+val('f_assina')+' em '+estado.data+'.';
+  return t;
+}
+
+function link(chave){var c=estado.cupom;return (c&&CFG.links[chave+'_'+c])||(!c||!CFG.cupons[c]||CFG.cupons[c].aplica.indexOf(chave)<0?CFG.links[chave]:'')||''}
+
+function etapa(titulo,sub,url,id){
+  var b=url?'<a class="btn btn-pri" target="_blank" rel="noopener" href="'+url+'" data-etapa="'+id+'">Pagar agora</a>':
+    '<button class="btn btn-pri" data-semlink="'+id+'">Solicitar cobrança</button>';
+  return '<div class="etapa-pag" id="et_'+id+'"><div><b>'+titulo+'</b><span>'+sub+'</span></div>'+b+'</div>';
+}
+
+$('btnAceitar').onclick=function(){
+  if(!validar())return;
+  var d=new Date();
+  estado.data=d.toLocaleDateString('pt-BR')+' às '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  estado.protocolo='CT-'+d.getFullYear().toString().slice(2)+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0')+'-'+Math.random().toString(36).slice(2,6).toUpperCase();
+  atualizar();
+  document.querySelectorAll('#formulario input').forEach(function(i){i.disabled=true});
+  document.querySelectorAll('.plano,#btnCupom,#btnAceitar').forEach(function(b){b.disabled=true;b.style.pointerEvents='none'});
+  $('btnAceitar').style.display='none';
+  $('printAssin').innerHTML='<p>______________________________________<br>'+esc(val('f_assina'))+' – CONTRATANTE<br>(assinatura eletrônica, protocolo '+estado.protocolo+')</p><br><p>______________________________________<br>'+esc(CFG.contratado.nome)+' – CONTRATADO</p>';
+  $('protocolo').textContent=estado.protocolo;
+  $('resumo2').innerHTML=linhasResumo();
+  var h='';
+  if(estado.plano==='unico'){
+    h+=etapa('Pagamento único: '+brl(preco('unico')),'Pix, boleto ou cartão',link('unico'),'unico');
+  }else{
+    h+=etapa('1. Entrada: '+brl(preco('entrada')),'Pix, boleto ou cartão',link('entrada'),'entrada');
+    h+=etapa('2. Assinatura: '+brl(preco('mensal'))+'/mês','Cadastre o cartão. A 1ª mensalidade é cobrada em 30 dias.',link('assinatura'),'assinatura');
+  }
+  $('etapasPag').innerHTML=h;
+  $('checkout').style.display='block';$('p3').classList.add('on');
+  $('checkout').scrollIntoView({behavior:'smooth'});
+  try{localStorage.setItem('contrato_'+estado.protocolo,textoWhats())}catch(e){}
+};
+
+$('etapasPag').addEventListener('click',function(e){
+  var a=e.target.closest('[data-etapa]');
+  if(a){setTimeout(function(){$('et_'+a.dataset.etapa).classList.add('feito');a.textContent='Aberto ✓'},400)}
+  var s=e.target.closest('[data-semlink]');
+  if(s){window.open('https://wa.me/'+CFG.contratado.whatsapp+'?text='+encodeURIComponent(textoWhats()+'\n\nPor favor, me envie o link de pagamento.'),'_blank')}
+});
+$('btnZap').onclick=function(){window.open('https://wa.me/'+CFG.contratado.whatsapp+'?text='+encodeURIComponent(textoWhats()),'_blank')};
+$('btnPdf').onclick=function(){window.print()};
+
+atualizar();
+</script>
+</body>
+</html>
